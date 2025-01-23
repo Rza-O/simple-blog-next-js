@@ -4,15 +4,12 @@ import React from 'react';
 
 const profile = async () => {
    const { isAuthenticated } = getKindeServerSession();
-   const authenticated = await isAuthenticated();
-   if (!authenticated) {
-      return redirect("/api/auth/login");
+
+   if (!(await isAuthenticated())) {
+      redirect("/api/auth/login");
    }
-   return (
-      <div>
-         this is profile is profile
-      </div>
-   );
+
+   return <div>Protected content</div>;
 };
 
 export default profile;
