@@ -6,7 +6,7 @@ const profile = async () => {
    const { isAuthenticated } = await getKindeServerSession();
    console.log(getKindeServerSession())
    const isLoggedIn= await isAuthenticated();
-   if (!isLoggedIn) {
+   if (isLoggedIn) {
       redirect("/api/auth/login");
    }
    return (
