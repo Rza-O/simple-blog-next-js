@@ -1,19 +1,18 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { redirect } from 'next/navigation';
-import React from 'react';
+"use client";
 
-const profile = async () => {
-   const { isAuthenticated } = getKindeServerSession();
-   console.log(getKindeServerSession())
-   const isLoggedIn= await isAuthenticated();
-   if (!isLoggedIn) {
-      redirect("/api/auth/login");
-   }
-   return (
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
+
+export default function Admin() {
+   const { isAuthenticated, isLoading } = useKindeBrowserClient();
+
+   if (isLoading) return <div>Loading...</div>;
+
+   return isAuthenticated ? (
+      <div>Admin content</div>
+   ) : (
       <div>
-         this is profile is profilee3ee
+         You have to <LoginLink>Login</LoginLink> to see this page
       </div>
    );
-};
-
-export default profile;
+}
