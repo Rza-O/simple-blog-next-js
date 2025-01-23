@@ -1,5 +1,6 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
+
 import React from "react";
 
 const Profile = async () => {
@@ -17,7 +18,7 @@ const Profile = async () => {
       return <div>Protected content</div>;
    } catch (error) {
       console.error("Authentication error:", error);
-      // redirect("/api/auth/login"); // Redirect on error
+      redirect("/api/auth/login"); // Redirect on error
    }
 };
 
