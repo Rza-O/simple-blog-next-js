@@ -1,15 +1,24 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { redirect } from 'next/navigation';
-import React from 'react';
+import { redirect } from "next/navigation";
+import React from "react";
 
-const profile = async () => {
-   const { isAuthenticated } = getKindeServerSession();
+const Profile = async () => {
+   // Wrap the session in a try-catch to handle errors
+   try {
+      const session = getKindeServerSession();
+      const authenticated = await session.isAuthenticated();
 
-   if (!(await isAuthenticated())) {
-      redirect("/api/auth/login");
+      // If the user is not authenticated, redirect to login
+      if (!authenticated) {
+         redirect("/api/auth/login");
+      }
+
+      // If authenticated, render the protected content
+      return <div>Protected content</div>;
+   } catch (error) {
+      console.error("Authentication error:", error);
+      // redirect("/api/auth/login"); // Redirect on error
    }
-
-   return <div>Protected content</div>;
 };
 
-export default profile;
+export default Profile;
