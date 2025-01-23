@@ -1,16 +1,19 @@
-import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from 'next/navigation';
+import React from 'react';
 
-export default async function Protected() {
-   const { isAuthenticated } = getKindeServerSession();
-
-   return (await isAuthenticated()) ? (
+const profile = async () => {
+   const { isAuthenticated } = await getKindeServerSession();
+   console.log(getKindeServerSession())
+   const isLoggedIn= await isAuthenticated();
+   if (!isLoggedIn) {
+      redirect("/api/auth/login");
+   }
+   return (
       <div>
-         This page is protected - but you can view it because you are authenticated
-      </div>
-   ) : (
-      <div>
-         This page is protected, please <LoginLink>Login</LoginLink> to view it
+         this is profile is profilee3ee
       </div>
    );
-}
+};
+
+export default profile;
