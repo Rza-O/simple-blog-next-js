@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import React from 'react';
 
 const profile = async () => {
-   const { isAuthenticated } = await getKindeServerSession();
+   const { isAuthenticated } = getKindeServerSession();
    console.log(getKindeServerSession())
    const isLoggedIn= await isAuthenticated();
    if (isLoggedIn) {
