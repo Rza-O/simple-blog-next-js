@@ -7,6 +7,7 @@ const Home = async () => {
    return (
       <div>
          <h2 className='text-5xl'>This is home page!</h2>
+         <h2>Trying to authenticate with kinde in the deployment</h2>
       </div>
    );
 };
