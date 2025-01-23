@@ -15,7 +15,7 @@ const Profile = async () => {
       }
 
       // If authenticated, render the protected content
-      return <div>Protected content checking deploy</div>;
+      return <div>Protected content checking deploy again</div>;
    } catch (error) {
       console.error("Authentication error:", error);
       redirect("/api/auth/login"); // Redirect on error
